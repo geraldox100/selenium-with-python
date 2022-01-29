@@ -1,0 +1,1 @@
+Este projeto tem como objetivo demosntrar a utilização da biblioteca selenium com python para coletar informações do site status invest e gerar um CSV que possa ser importado por outro sistema.
