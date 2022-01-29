@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    selenium-chrome:
+        image: selenium/standalone-chrome:latest
+        hostname: selenium-chrome
+        networks:
+            - selenium-network
+        privileged: true
+        shm_size: 2g
+        ports:
+            - "4444:4444"
+            - "7900:7900"
+    app:
+        env_file:
+            - .env
+        build: ./
+        networks:
+            - selenium-network
+        depends_on:
+            - selenium-chrome
+
+networks:
+    selenium-network:
+      driver:  bridge
