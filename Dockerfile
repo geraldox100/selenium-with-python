@@ -1,7 +1,8 @@
 FROM python:3.9.6-alpine3.14
 
-COPY dist /
+COPY fundamentos.py /fundamentos.py
 
-RUN pip install selenium-with-python*.whl
+RUN apk add --no-cache build-base gcc libffi-dev
 
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+RUN pip install selenium
+ENTRYPOINT ["python", "/fundamentos.py"]

@@ -11,14 +11,20 @@ services:
         ports:
             - "4444:4444"
             - "7900:7900"
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:7900"]
+            interval: 10s
+            timeout: 10s
+            retries: 5
     app:
-        env_file:
-            - .env
         build: ./
+        volumes:
+            - /Users/geraldoferraz/repositorios/blog/selenium-with-python:/tmp/
         networks:
             - selenium-network
         depends_on:
-            - selenium-chrome
+            selenium-chrome:
+                condition: service_healthy
 
 networks:
     selenium-network:
