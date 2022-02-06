@@ -9,7 +9,7 @@ def main():
     # s = Service('/Users/geraldoferraz/Downloads/chromedriver')    
     # navegador = webdriver.Chrome(service=s, options=option)
 
-    option.add_argument('headless')
+    # option.add_argument('headless')
     navegador = webdriver.Remote('http://selenium-chrome:4444/wd/hub', options=option)
     
 
@@ -35,7 +35,8 @@ def main():
                 _yield = navegador.find_element(By.XPATH, xpath_yield).text
                 valorizacao = navegador.find_element(By.XPATH, xpath_valorizacao).text
 
-                writer.writerow({'valor_atual': valor_atual, 'min': min, 'max': max, 'yield': _yield, 'valorizacao': valorizacao})
+                writer.writerow({'valor_atual': valor_atual, 'min': min, 'max': max, 
+                'yield': _yield, 'valorizacao': valorizacao})
     finally:
         navegador.close()
 
